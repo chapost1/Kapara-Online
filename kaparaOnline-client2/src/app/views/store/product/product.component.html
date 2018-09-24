@@ -1,0 +1,11 @@
+<mat-card mat-raised-button class="product-card" matTooltip="{{role == 'admin'? 'Edit '+product.name :'Add '+product.name+' To Cart'}}">
+  <img class="product-image" mat-card-image src="{{product.image | currentImage}}" alt="{{product.name | titlecase}} Image"
+    title="{{product.name | titlecase}} Image" />
+  <hr>
+  <mat-card-content>
+    <p>{{product.price | currencyFormatHeIl}}</p>
+  </mat-card-content>
+  <mat-card-content class="lead">
+    <p>{{product.name | titlecase}}</p>
+  </mat-card-content>
+</mat-card>

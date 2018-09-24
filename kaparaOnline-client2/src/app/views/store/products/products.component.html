@@ -1,0 +1,31 @@
+<mat-tab-group #matTabGroup dynamicHeight mat-stretch-tabs class="mat-elevation-z4" [hidden]="facadeService.filtering && filterKey.length > 0"
+  (selectedTabChange)="tabChangeEvent($event)" [backgroundColor]="'primary'">
+  <mat-tab *ngFor="let category of categories;" label="{{category.name}}">
+    <div>
+      <div *ngIf="productsWaitSpinner" class="row jumbotron bg-light" style="padding: 2rem">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div *ngIf="!productsWaitSpinner" class="products-container jumbotron bg-light">
+        <div class="row">
+          <div class="product-instance {{ cartCollapsed? 'product-instance-free':'' }}" *ngFor="let product of selectedCategoryProducts"
+            (click)="handleProductClick(product)">
+            <app-product [product]="product" [role]="facadeService.user?.role"></app-product>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div *ngIf="facadeService.filtering && filterKey.length > 0">
+  <h2>Filter By: {{filterKey}}</h2>
+  <div class="filtering-container">
+    <mat-spinner *ngIf="productsWaitSpinner"></mat-spinner>
+    <div class="row" *ngIf="filteredProducts.length > 0">
+      <div [hidden]="productsWaitSpinner" class="product-instance {{ cartCollapsed? 'product-instance-free':'' }}" *ngFor="let product of filteredProducts"
+        (click)="handleProductClick(product)">
+        <app-product [product]="product" [role]="facadeService.user?.role"></app-product>
+      </div>
+    </div>
+    <h4 [hidden]="filteredProducts.length > 0 || productsWaitSpinner">No Products Found</h4>
+  </div>
+</div>

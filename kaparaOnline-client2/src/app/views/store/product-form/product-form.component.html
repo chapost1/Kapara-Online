@@ -1,0 +1,62 @@
+<form [formGroup]="productFormGroup" (ngSubmit)="handleProductSubmit()" #myNgProductForm="ngForm">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Product Name" formControlName="name" required>
+      <mat-error class="errMsg" *ngIf="productFormGroup.get('name').hasError('required')">
+        required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Price in	&#8362;" type="number" formControlName="price" required min="0" ng-model="myDecimal | number : 2" class="mat-input-number-product-form-price"
+        step="0.10" value="{{ (productFormGroup.get('price').value !== null) && !checkPriceInputFocus() ? (productFormGroup.get('price').value | currencyFormatHeIl:'no') : productFormGroup.get('price').value }}"
+        (blur)="priceValueAddHandleZero()" (keyup)="priceValueAddHandleZero($event)" (keydown)="preventWrongKeys($event)" autocomplete="off">
+      <mat-error class="errMsg" *ngIf="productFormGroup.get('price').hasError('required') && !productFormGroup.controls.price.errors">
+        required
+      </mat-error>
+      <mat-error class="errMsg" *ngIf="productFormGroup.get('price').hasError('pattern')">
+        Decimal numbers only
+      </mat-error>
+      <mat-error class="errMsg" *ngIf="productFormGroup.controls.price.errors && !productFormGroup.get('price').hasError('pattern')">
+        {{ productFormGroup.controls.price.errors.hasError }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <div>
+      <mat-checkbox #matProductCheckBox *ngIf="editProduct" class="example-margin" (change)="checkChangeProdImage($event)" matTooltip="{{changeProdImage? 'Keep':'Change'}} Existing Image">Edit Image?</mat-checkbox>
+    </div>
+    <label *ngIf="changeProdImage" class="upload-photo-label" for="upload-photo" matTooltip="{{imageFile_errors?.hasError? 'Upload' : 'Change'}} Image">
+      <span *ngIf="imageFile_errors?.hasError">
+        <div class="upload-button gray-button">
+          <i class="far fa-file-image"></i> Upload...</div>
+      </span>
+      <span *ngIf="!imageFile_errors?.hasError">
+        <div class="upload-button">
+          <i class="fas fa-file-image"></i> Change...</div>
+      </span>
+    </label>
+    <input id="upload-photo" type="file" placeholder="Product Image" formControlName="imageFile" (change)="fileUpload_mTor($event)">
+    <mat-error class="errMsg" *ngIf="imageFile_errors">
+      {{ imageFile_errors.hasError }}
+    </mat-error>
+  </div>
+  <div *ngIf="previewImagePath.length > 0">
+    <img class="preview-image-product" src="{{previewImagePath | currentImage}}" alt="Preview Image" title="Preview Image" />
+  </div>
+  <div [hidden]="previewImagePath.length > 0" class="preview-image-product"></div>
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Category" formControlName="category" required>
+        <mat-option *ngFor="let category of categories;" [value]="category.name">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error class="errMsg" *ngIf="productFormGroup.get('category').hasError('required')">
+        required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-button type="submit" [disabled]="!productFormGroup.valid || imageFile_errors.hasError" matTooltip="{{editProduct? 'Save Changes':'Add Product'}}">{{editProduct? 'Save':'Add'}}</button>
+</form>

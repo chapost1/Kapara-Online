@@ -1,0 +1,7 @@
+.bottom-sheet-custom{
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

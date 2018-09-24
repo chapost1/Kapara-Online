@@ -1,0 +1,60 @@
+<div class="{{cartTableClass}}">
+  <div [hidden]="facadeService.storeState == 'order'" *ngIf="clientCurrentCart.cartProducts.length > 0">
+    <div class="button-clean-cart" matTooltip="Remove All Products From Cart" (click)="callToCleanCartDialog()">
+      <h6>Clean Cart
+        <i class="fas fa-eraser"></i>
+      </h6>
+    </div>
+  </div>
+  <table class="table bordered mat-elevation-z8" *ngIf="clientCurrentCart.cartProducts.length > 0">
+    <thead>
+      <tr>
+        <th style="max-width:0px;padding: unset;overflow: hidden;" class="no-border" *ngIf="facadeService.storeState == 'shopping'">
+
+        </th>
+        <th class="images-toggler no-left-border">
+          <i *ngIf="facadeService.storeState == 'shopping'" class="images-toggler far fa-eye{{showImage ?'-slash':''}}" (click)="showImage = !showImage"
+            matTooltip="{{showImage ?'Hide':'Show'}} Images"></i>
+        </th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price
+          <span style="font-size:0.7rem">(total)</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartProduct of clientCurrentCart.cartProducts">
+        <td style="padding: 10px 0px 0px 0px;overflow: hidden;text-align: center;" class="no-border" *ngIf="facadeService.storeState == 'shopping'">
+          <i class="fas fa-trash-alt remove-product" matTooltip="Remove {{cartProduct.product.name}} From Cart" (click)="removeFromCart(cartProduct.product._id)"></i>
+        </td>
+        <td class="no-left-border" style="text-align: center;">
+          <img *ngIf="showImage || facadeService.storeState == 'order'" class="cart-product-image" src="{{cartProduct.product.image}}"
+            [title]="cartProduct.product.name" alt="{{cartProduct.product.name}} image" />
+        </td>
+        <td [hidden]="facadeService.filtering && facadeService.storeState == 'order'">{{cartProduct.product.name | titlecase }}</td>
+        <td *ngIf="facadeService.filtering && facadeService.storeState == 'order'" innerHTML="{{cartProduct.product.name | highlight : filterBy}}"></td>
+        <td>x{{cartProduct.quantity}}</td>
+        <td>
+          <ul style="list-style: none;padding: unset;margin: unset;">
+            <li style="font-size: 0.7rem;">{{cartProduct.quantity}}x{{cartProduct.product.price | currencyFormatHeIl }}</li>
+            <li>{{cartProduct.product.price*cartProduct.quantity | currencyFormatHeIl }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div [hidden]="!(clientCurrentCart.cartProducts.length > 0)">
+  <h4 style="text-decoration: underline;">Total: {{getTotal() | currencyFormatHeIl}}</h4>
+
+  <div style="float:right;" *ngIf="facadeService.storeState == 'shopping'">
+    <h4 style="cursor: pointer;" matTooltip="Order Cart" (click)="facadeService.toggleStoreState()">Order
+      <i class="fas fa-clipboard-check"></i>
+    </h4>
+  </div>
+
+</div>
+
+<h6 [hidden]="clientCurrentCart.cartProducts.length > 0">Empty..</h6>

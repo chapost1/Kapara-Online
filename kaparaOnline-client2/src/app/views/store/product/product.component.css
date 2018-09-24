@@ -1,0 +1,21 @@
+.product-card {
+    max-width: 100%;
+    padding-top: 10px;
+    margin-top: 20px;
+    border-radius: 5% !important;
+  }
+  .product-image{
+      max-height:200px;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+  }
+  hr{
+      color:rgb(248, 245, 245);
+  }
+
+.product-card mat-card-content{
+    text-align: center;
+}
+.product-card mat-card-content.lead{
+    font-size: 110%;
+}

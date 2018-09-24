@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.success-snackbar .mat-simple-snackbar-action  {
+    background-color: #323232;
+    color: #40ff70;
+}
+.alert-snackbar .mat-simple-snackbar-action  {
+    background-color: #323232;
+    color: #ff4081;
+}
+.mat-simple-snackbar {
+    font-size: 1.2rem;
+}
+.mat-simple-snackbar-action{
+    margin: -8px 0 -8px 34px !important;
+    font-size: 1.5rem;
+}
+.mat-snack-bar-container{
+    padding: 18px 4px 18px 20px !important;
+}
+
+body{
+    background-color: #93a1a5;
+    background-image: linear-gradient(to left top, #21316b, #294f7d, #436c8b, #688797, #93a1a5);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* For Loading-Spinner */
+body, html {
+    height: 100%;
+  } 
+  .app-loading {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .app-loading .spinner {
+    height: 600px;
+    width: 600px;
+    animation: rotate 2s linear infinite;
+    transform-origin: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .app-loading .logo {
+    width: 180px;
+    height: 100px;
+    background: url(./assets/images/kaparaOnlineLogo.svg) center center no-repeat; 
+  }
+  @media screen and (max-width:991px){
+    .app-loading .spinner {
+        height: 400px;
+        width: 400px;
+      }
+      .app-loading .logo {
+        width: 140px;
+        height: 85px;
+      }
+  }
+  @media screen and (max-width:676px){
+    .app-loading .spinner {
+        height: 300px;
+        width: 300px;
+    }
+        .app-loading .logo {
+            width: 110px;
+            height: 65px;
+          }
+      
+  }
+  .app-loading .spinner .path {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke: #ddd;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+    }
+  }

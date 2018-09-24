@@ -1,0 +1,45 @@
+<mat-card class="header-card">
+  <nav class="navbar navbar-expand-sm">
+    <a class="navbar-brand" routerLink="/" matTooltip="{{(facadeService.user?.role != 'admin')? (router.url != '/home/login'?'Navigate Home':''):'Home disabled, Please log out.'}}">
+      <img class="logoImage" src="../../../assets/images/kaparaOnlineLogo.svg" alt="logo Image" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-controls" aria-controls="navbar-controls"
+      aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+      <i *ngIf="isCollapsed" class="fas fa-bars toggleHeadIcon" matTooltip="Show Menu"></i>
+      <i [hidden]="isCollapsed" class="fas fa-times toggleHeadIcon" matTooltip="Hide Menu"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-controls" [ngbCollapse]="isCollapsed">
+      <hr [hidden]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+      <span class="navbar-text">
+        <p class="decoratedContactUs">Contact Us:</p>
+        <p class="contactUsParagraph">
+          <i class="fas fa-phone"></i>
+          052-698-2308
+        </p>
+        <p class="contactUsParagraph">
+          <i class="fas fa-envelope"></i>
+          stalmail10@gmail.com
+        </p>
+        <hr style="margin:8px 0px">
+        <div class="userInterface">
+          <p>
+            <i class="fas fa-user"></i>
+            Hello {{user && user.first? user.first : 'Guest' }}!
+          </p>
+          <a *ngIf='user' class="nav-link decoratedContactUs logoutA" (click)="logoutUser()" matTooltip="Logout">Logout
+            <span class="sr-only">(current)</span>
+          </a>
+        </div>
+      </span>
+    </div>
+  </nav>
+  <div *ngIf="checkUserAndIfStore()" class="row navbar-light searchRow">
+    <div class="form-inline my-2 my-lg-0 paddingForSearch">
+      <input class="form-control mr-sm-2 searchInput" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchValue" (keyup)="handleSearch(searchValue)"/>
+      <button id="searchKeyOfHeader" class="btn btn-outline-primary my-2 my-sm-0 searchRow-btn" type="button" matTooltip="Filter Products" (click)="handleSearch(searchValue)">Search</button>
+    </div>
+  </div>
+</mat-card>

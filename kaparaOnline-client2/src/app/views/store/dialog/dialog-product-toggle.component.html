@@ -1,0 +1,36 @@
+<div style="margin:auto;text-align: center;" [@quantityLowAnimation]="quantityLowAnimationState" *ngIf="state=='quantity'">
+  <div mat-dialog-content>
+    <button mat-button style="display: inline-block;min-width: 0px;" (click)="handleQuantity(false)" autofocus="false">
+      <i mat-button class="fas fa-minus"></i>
+    </button>
+    <mat-form-field style="display: inline-block;max-width: 90px;padding:0px 2px;">
+      <input id="input-dialog" style="display: inline-block;text-align: center;" matInput type="number" [value]="quantity" readonly
+        autofocus>
+    </mat-form-field>
+    <button mat-button style="display: inline-block;min-width: 0px;" (click)="handleQuantity(true)" autofocus="false">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="AddCartProduct()" [disabled]="!quantity > 0">Add</button>
+  </div>
+</div>
+<div *ngIf="state=='order'">
+  <div mat-dialog-content style="max-height: unset;overflow: unset;">
+    Your Order has been created Successfully! To download your receipt press
+    <strong class="lead" style="text-decoration: underline;cursor: pointer;font-weight: bold;" (click)="downloadPdf()">Here</strong>
+    <div mat-dialog-actions style="text-align: center;margin: auto;display: block;">
+      <button mat-button (click)="onNoClick()" style="background-color: black;color: white">Ok</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="state=='cleanCart'">
+  <div mat-dialog-content style="max-height: unset;overflow: unset;">
+    Are You Sure You Want To Procceed?
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="removeCart()" class="btn btn-alert">Clean</button>
+    </div>
+  </div>
+</div>

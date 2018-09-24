@@ -1,0 +1,71 @@
+<div class="order-form-cont" *ngIf="takenShippingDates !== null">
+  <div class="order-h3-container">
+    <h3>Order</h3>
+    <hr>
+  </div>
+  <h5>Shipping Details:</h5>
+  <hr>
+  <form [formGroup]="orderFormGroup" (ngSubmit)="handleOrderSubmit()">
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="City" formControlName="city" required (dblclick)="checkUserDataIn()? null : fillAutoUserFields()">
+          <mat-option *ngFor="let city of cities" [value]="city.name">
+            {{city.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error class="errMsg" *ngIf="orderFormGroup.get('city').hasError('required')">
+          required
+        </mat-error>
+      </mat-form-field>
+      <span class="mr-auto-fill-btn {{checkUserDataIn()? 'auto-fill-disabled' : ''}}"
+      matTooltip="{{checkUserDataIn()? '' : 'Fill your account address'}}"
+       (click)="checkUserDataIn()? null : fillAutoUserFields()">Auto Fill</span>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address" required (dblclick)="checkUserDataIn()? null : fillAutoUserFields()">
+        <mat-error class="errMsg" *ngIf="orderFormGroup.get('address').hasError('required')">
+          required
+        </mat-error>
+      </mat-form-field>
+      <i class="fas fa-home" matTooltip="Required Shipping Address"
+      [style.color]="(orderFormGroup.get('address')?.hasError('required'))? 'rgba(64, 63, 84, 0.48)':'rgba(0,0,0,.54)'"></i>
+    </div>
+    <div>
+      <mat-form-field class="date-picker-field">
+        <input matInput readonly class="date-input" [matDatepicker]="picker" [matDatepickerFilter]="dateFilter()" [min]="today" [max]="nextMonth"
+          placeholder="Pick Shipping Date" formControlName="shipping_date">
+        <mat-datepicker-toggle matSuffix [for]="picker" matTooltip="{{(orderFormGroup.get('shipping_date').hasError('required'))? 'Pick ':'Change'}} Shipping Date"
+        [style.color]="(orderFormGroup.get('shipping_date').hasError('required'))? 'rgba(64, 63, 84, 0.7)':'rgba(0,0,0,.54)'"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error class="errMsg" *ngIf="orderFormGroup.get('shipping_date').hasError('required')">
+          required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <h6>Payments:</h6>
+      <hr>
+      <mat-form-field>
+        <input matInput placeholder="Credit Card" formControlName="credit_card" required (input)="preventWrongValues()"
+          (keydown)="preventWrongKeys($event)" minlength="19"  maxlength="19" credit-card/>
+        <mat-error class="errMsg" *ngIf="orderFormGroup.get('credit_card').hasError('required')">
+          required
+        </mat-error>
+        <mat-error class="errMsg" *ngIf="orderFormGroup.get('credit_card').hasError('minlength')">
+            missing numbers
+          </mat-error>
+        <mat-error class="errMsg" *ngIf="orderFormGroup.controls.credit_card.errors">
+            {{ orderFormGroup.controls.credit_card.errors.hasError }}
+        </mat-error>
+      </mat-form-field>
+      <i class="far fa-credit-card"
+      matTooltip="1234-5678-9012-3456 format"
+      [style.color]="(orderFormGroup.controls.credit_card.errors?.hasError || orderFormGroup.get('credit_card')?.hasError('minlength') || orderFormGroup.get('credit_card')?.hasError('required'))? 'rgba(64, 63, 84, 0.48)':'rgba(0,0,0,.54)'"></i>
+    </div>
+    <button mat-button type="submit" [disabled]="!orderFormGroup.valid" matTooltip="Place Order">Order</button>
+  </form>
+</div>
+<div [hidden]="takenShippingDates !== null" >
+  <mat-spinner></mat-spinner>
+</div>

@@ -1,0 +1,10 @@
+<div class="container-fluid" [hidden]="spinnerOn">
+    <div class="row">
+        <app-header class="col-12" style="padding:unset;"></app-header>
+    </div>
+    <div style="position: relative;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-spinner *ngIf="spinnerOn"></app-spinner>
+<app-c-bottom-sheet class="bottom-sheet-custom" #bottomSheet></app-c-bottom-sheet>

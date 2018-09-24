@@ -1,0 +1,52 @@
+.bottom-sheet-container{
+    background-color: rgb(43, 41, 41);
+    width:350px;
+    color:white;
+    padding-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -webkit-animation: flickerAnimation 1.5s ease-in;
+    -moz-animation: flickerAnimation 1.5s ease-in;
+    -o-animation: flickerAnimation 1.5s ease-in;
+     animation: flickerAnimation 1.5s ease-in;
+     -webkit-transition: opacity 1.5s ease-in;
+     -moz-transition: opacity 1.5s ease-in-out;
+     -ms-transition: opacity 1.5s ease-in-out;
+     -o-transition: opacity 1.5s ease-in-out;
+     transition: opacity 1.5s ease-in-out;
+     opacity: 0;
+}
+.bottom-sheet-container .col-9 p{
+    max-width:230px;
+}
+.bottom-sheet-container .col-9{
+    padding-right: 5px;
+}
+.bottom-sheet-container .col-3{
+    padding-left: 5px;
+}
+button[mat-button]{
+    background-color: rgb(152, 202, 77);
+    min-width: 72px;
+    border-radius: 5px;
+}
+@keyframes flickerAnimation {
+    0%   { opacity:0; }
+    50%  { opacity:0.3; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:0; }
+    50%  { opacity:0.3; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:0; }
+    50%  { opacity:0.3; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:0; }
+    50%  { opacity:0.3; }
+    100% { opacity:1; }
+  }

@@ -1,0 +1,108 @@
+.header-card{
+    background-color: #6e898c;
+}
+.searchRow{
+    background-color: #6e898c;
+}
+.searchInput:-moz-placeholder{
+    color: white;
+}
+.searchInput::-moz-placeholder{
+    color: white;
+}
+.searchInput:-ms-input-placeholder{
+    color: white;
+}
+.searchInput::-webkit-input-placeholder{
+    color: white;
+}
+.searchInput{
+    color: white;
+    background-color: transparent;
+}
+.searchInput:focus{
+    background-color: #80a4a8;
+}
+.searchRow-btn{
+    background-color: #285381;
+}
+.searchRow-btn:hover{
+    background-color: #007bff;
+}
+.searchRow-btn:focus{
+    color: white;
+    background-color: #007bff;
+}
+.logoImage{
+    width:200px;
+}
+.navbar-text p{
+    margin: 5px 0px;
+    color:black;
+}
+.decoratedContactUs{
+    text-decoration-line: underline;
+    font-weight: bold;
+}
+.userInterface a , .userInterface p{
+    display:inline-block;
+}
+.toggleHeadIcon{
+    font-size: 2.7rem;
+    color:#475c5f;
+}
+.toggleHeadIcon:hover{
+    color:#36484b;
+}
+.toggleHeadIcon:active{
+    color:#29393b;
+}
+.toggleHeadIcon:focus{
+    border: 0;
+    outline: 0;
+}
+.navbar.navbar-expand-sm{
+    padding: 0px 16px;
+}
+.navbar-text{
+    padding:2px 0px;
+}
+.searchRow{
+    margin:unset;
+    position: relative;
+    top: -8px;
+}
+.paddingForSearch{
+    padding-left:25px;
+    padding-bottom: 8px;
+}
+.logoutA{
+    cursor: pointer;
+    color:rgb(27, 27, 80);
+    text-decoration: underline !important;
+}
+.logoutA:hover{
+    color:rgb(27, 27, 80);
+}
+.logoutA:active{
+    color:rgb(1, 1, 5);
+}
+@media screen and (max-width:575px){
+    .logoImage{
+        width:150px;
+    }
+    #navbar-controls{
+        padding-left:16px;
+        padding-top:10px;
+    }
+    .searchInput{
+        max-width:200px;
+        margin-right: 6px;
+        margin-bottom: 0px;
+    }
+}
+@media screen and (max-width:380px){
+    .searchInput{
+        max-width: 180px;
+    }
+}

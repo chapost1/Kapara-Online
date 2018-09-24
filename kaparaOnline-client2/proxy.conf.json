@@ -1,0 +1,22 @@
+{
+  "/users/*": {
+     "target":  "http://localhost:3000",
+     "secure": false,
+     "changeOrigin": true
+  },
+  "/store/*": {
+     "target":  "http://localhost:3000",
+     "secure": false,
+     "changeOrigin": true
+  },
+  "/home/init": {
+     "target":  "http://localhost:3000",
+     "secure": false,
+     "changeOrigin": true
+  },
+  "/resources/uploads/*": {
+     "target":  "http://localhost:3000",
+     "secure": false,
+     "changeOrigin": true
+  }
+}

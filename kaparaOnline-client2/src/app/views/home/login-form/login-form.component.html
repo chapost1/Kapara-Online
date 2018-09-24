@@ -1,0 +1,33 @@
+<h3>Registered?</h3>
+<mat-card class="bisquite">
+  <form [formGroup]="loginFormGroup" (ngSubmit)="tryToLogin()" #myNgLoginForm="ngForm">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Email" type="email" formControlName="username" required>
+        <mat-error class="errMsg" *ngIf="loginFormGroup.get('username').hasError('required')">
+          required
+        </mat-error>
+        <mat-error class="errMsg" *ngIf="loginFormGroup.get('username').hasError('pattern')">
+          wrong email format
+        </mat-error>
+        <mat-error class="errMsg" *ngIf="loginFormGroup.get('username').hasError('email') &&
+        !loginFormGroup.get('username').hasError('pattern')">
+          wrong email format
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password" required>
+        <mat-error class="errMsg" *ngIf="loginFormGroup.get('password').hasError('required')">
+          required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-button type="submit" class="border-for-button login-btn" [disabled]="!loginFormGroup.valid" matTooltip="Login">
+      <div [hidden]="waitSpinnerLogin" >Login</div>
+      <mat-spinner *ngIf="waitSpinnerLogin" [diameter]="20" class="mat-spinner-handler"></mat-spinner>
+    </button>
+    <a [routerLink]="['../../home/register']" matTooltip="Sign Up!">Not Registered?</a>
+  </form>
+</mat-card>

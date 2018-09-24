@@ -1,0 +1,109 @@
+<mat-card class="container-fluid self">
+  <div class="row col-of-panel-row">
+    <mat-card class="col-of-panel">
+      <!--User is Defined-->
+      <div *ngIf="user" class="user-is-logged">
+        <div class="go-shopping" [routerLink]="['/store']" matTooltip="{{facadeService.user?.cart?.cartProducts.length > 0? 'Resume' : 'Start'}} Shopping">
+          <h3>{{facadeService.user?.cart?.cartProducts.length > 0? 'Resume' : 'Start'}} Shopping
+            <i class="fas fa-shopping-cart"></i>
+          </h3>
+        </div>
+        <hr>
+        <p>You have been logged in successfully!</p>
+        <hr>
+        <div class="for-cart-image">
+          <img class="cart-image" src="../../../../assets/images/home_cart.png" alt="Example Cart" title="Example Cart" />
+        </div>
+      </div>
+      <!--Login Form - if user is undefined-->
+      <app-login-form [user]="user" [hidden]="user"></app-login-form>
+    </mat-card>
+    <mat-card class="col-of-panel panel-b-mat-card">
+      <!--About Us-->
+      <img mat-card-image class="happy_image" src="../../../../assets/images/she_happy.jpg" title="Happy Client" alt="Photo of an happy Client">
+      <hr>
+      <div class="paddingBottom20">
+        <mat-card-content>
+          <p class="font-size-1-1">
+            Don't miss out!!
+            <br> Look how happy our costumers are!
+            <br> We are top kind of sellers, we care about our customers,
+            <br> and the most important part: we are cheap and yet provide top quality products!!! Try it out!
+            <br> Anytime, from anywhere! nice and fast online shopping.
+            <br> Would like to have buissness with you, and respect you as we can.
+            <br> Have a wonderful day!
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button class="border-for-button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('kaparaonline.com'),'facebook-share-dialog','width=350,height=436'); return false;"
+            matTooltip="Share Us On Facebook!">
+            <i class="fab fa-facebook-square"></i>
+            Share on Facebook</a>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+    <mat-card class="col-of-panel">
+      <!--Last purchase and cart and bla bla bla-->
+      <div class="panel-c">
+        <div class="data" *ngIf="store_data">
+          <div class="row data_store">
+            <img class="resume_image" src="{{store_data?.chosenImage | currentImage}}" title="Random Example Product" alt="Random Product Image"
+            />
+          </div>
+          <hr>
+          <div class="row">
+            <h5>Available products in our store : {{store_data.products}}</h5>
+          </div>
+          <hr>
+          <div class="row">
+            <h5>Number of Orders Submitted in our store : {{store_data.orders}}</h5>
+          </div>
+        </div>
+        <hr *ngIf="facadeService.user && facadeService.isAuthenticated">
+        <div class="user-greeter row" *ngIf="facadeService.user && facadeService.isAuthenticated && user">
+          <div class="notification" *ngIf="notification">
+            <p>
+              <strong>Notifications:</strong>
+            </p>
+            <div [ngSwitch]="notification">
+              <div *ngSwitchCase="'cart'">
+                Hi {{facadeService.user?.first}}!
+                <br> You have left
+                <strong matTooltip="{{getCartItemsNames()}}" [matTooltipClass]="'my-tooltip'">
+                  <mark class=" lead bg-danger mark-cart">
+                    {{facadeService.user?.cart?.cartProducts.length }}
+                  </mark>
+                </strong>
+                product{{facadeService.user?.cart?.cartProducts.length > 1? 's':'' }} at your Cart
+                <i class="fas fa-shopping-cart"></i>
+                At:
+                <strong>{{ facadeService.user?.cart?.updatedAt | date:'medium' }}</strong>
+                <br> To Continue your shopping please press
+                <a [routerLink]="['/store']" matTooltip="Resume Shopping">
+                  <strong>Here!</strong>
+                </a>
+              </div>
+              <div *ngSwitchCase="'orders'">
+                Hi {{facadeService.user?.first}}!
+                <br> You have made 
+                  <mark class=" lead bg-danger mark-cart">
+                    {{facadeService.user?.orders?.length }}
+                  </mark>
+                orders in our store.<br>
+                Your Last Purchase Occured at
+                <strong>{{ facadeService.user?.orders[facadeService.user?.orders.length-1]?.updatedAt | date:'medium' }}</strong>
+                <br> To Shop again at our store please click
+                <a [routerLink]="['/store']" matTooltip="Start Shopping">
+                  <strong>Here!</strong>
+                </a>
+              </div>
+              <div *ngSwitchDefault innerHtml="{{notification}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+</mat-card>

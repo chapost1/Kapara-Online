@@ -1,0 +1,147 @@
+.order-form-cont{
+    margin: 0px -5px;
+    background-color: #8d8dc9;
+    border-left: 2px dotted #4f4f88;
+    padding: 10px;
+    box-shadow: 0 5px 5px -3px rgba(93, 89, 124, 0.2), 0 8px 10px 1px rgba(99, 94, 130, 0.14), 0 3px 14px 2px rgba(109, 103, 139, 0.12);
+    min-height: 670px;
+}
+.order-h3-container{
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.errMsg{
+    color:rgb(145, 41, 41);
+}
+
+input.ng-untouched+.errMsg{
+    display: none !important;
+}
+
+button[mat-button]{
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    height:42px;
+    width:90px;
+    border-radius: 5%;
+    font-size: 1.1rem;
+    background-color: rgb(152, 152, 211);
+}
+button[disabled]{
+    cursor: not-allowed;
+    background-color: rgb(141, 141, 201) !important;
+}
+.mr-auto-fill-btn{
+    cursor: pointer;
+    box-shadow: 0 3px 1px -2px rgba(53, 48, 94, 0.09), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    height: 42px;
+    width: 90px;
+    border-radius: 8%;
+    font-size: 1rem;
+    background-color: rgb(164, 164, 213);
+    margin-left: 8px;
+    padding: 5px 8px;
+    color: #5e2690;
+}
+.mr-auto-fill-btn:not(.auto-fill-disabled):hover{
+    background-color: rgb(125, 125, 173);
+}
+.mr-auto-fill-btn:not(.auto-fill-disabled):active{
+    background-color: rgb(101, 101, 146);
+}
+.auto-fill-disabled{
+    cursor: not-allowed;
+    background-color: rgb(125, 125, 185) !important;
+    box-shadow: unset;
+    color: #433c61;
+}
+::ng-deep .mat-calendar-body-cell{
+    background-color: rgb(86, 206, 96) !important;
+}
+::ng-deep .mat-calendar-body-disabled{
+    cursor: not-allowed !important;
+    background-color: rgb(143, 25, 25) !important;
+    color: white !important;
+}
+::ng-deep .mat-calendar-body-disabled>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected){
+    color: white !important;
+}
+::ng-deep :not().mat-calendar-body-disabled .mat-calendar-body-today{
+    background-color: #529c7dbf !important;
+    border: unset !important;
+}
+::ng-deep .mat-calendar-body-disabled .mat-calendar-body-today{
+    border: unset !important;
+}
+.date-input{
+    cursor: default;
+}
+
+::ng-deep .date-picker-field .mat-form-field-appearance-legacy .mat-form-field-infix{
+    width: 142px !important;  
+}
+
+::ng-deep .date-picker-field .mat-form-field-suffix{
+    font-size: 2rem !important; 
+}
+
+::ng-deep .mat-calendar-body-selected{
+    background-color: #3d7929 !important;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+
+::ng-deep .mat-calendar-body-disabled:hover::after{
+        content: 'Shipping date is already Taken.';
+            position: absolute;
+            vertical-align: middle;
+            line-height: 20px;
+            text-align: start;
+    		font-size: 15px;
+    		padding: 5px;
+            background-color: rgba(43, 35, 35, 0.928);
+            border: 1px solid white;
+    		color: white;
+    		opacity: 0.8;
+            border-radius: 5px;
+            width:120px;
+            height: 50px;
+            z-index: 5;
+            white-space: pre-wrap;
+}
+
+::ng-deep .mat-calendar-period-button.mat-button{
+    /*  visibility: hidden !important;*/
+    /*display: none !important;*/
+   /*  opacity: 0 !important; */
+     z-index:-1 !important;
+    max-height: 0px !important;
+   /* overflow: hidden !important; */
+}
+::ng-deep .mat-calendar-period-button.mat-button::before{
+    content: 'Starting from this month until the end of the next month, enjoy :)';
+    position: absolute;
+    top: -17px;
+    left: 8px;
+    vertical-align: middle;
+    line-height: 20px;
+    text-align: start;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    background-color:  #fff;;
+    border: 1px solid white;
+    color: rgb(73, 69, 69);
+    opacity: 1;
+    border-radius: 5px;
+    width:200px;
+    height: 50px;
+    z-index: 5;
+    white-space: pre-wrap;
+}

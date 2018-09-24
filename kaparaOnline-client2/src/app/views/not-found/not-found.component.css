@@ -1,0 +1,13 @@
+.black-curtain{
+    border:1px solid white;
+    background-color: rgba(0, 0, 0, 0.568);
+    padding: 8px;
+    margin-top: 10px;
+    display: inline-block;
+    border-radius: 8px;
+}
+.black-curtain label{
+    color: white !important;
+    margin-right: 5px;
+    margin-bottom: unset;
+};

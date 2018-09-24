@@ -1,0 +1,58 @@
+<div *ngIf="{ role: facadeService.user?.role }; let variables">
+  <h6 style="margin-bottom: .3rem;opacity: 0;">Hi {{variables.role | titlecase}}</h6>
+  <div class="container-fluid self">
+    <div class="row store-middle-father">
+      <div id="contentToConvertToCanvas" class="screen-col master-cart custom-cart-size {{cartSize}}">
+        <div class="products-handle-head">
+          <div class="row">
+            <h4 class="cart-head col-eleven cart-cart" [style.display]="cart_display">
+              {{variables.role == 'guest'? facadeService.storeState == 'shopping'? 'My Cart' : "Your Order" : editProduct? editProduct.name
+              : 'Add Product'}}
+            </h4>
+            <span *ngIf="variables.role == 'admin'" class="col-one">
+              <i class="far fa-plus-square" (click)="resetForm()" matTooltip="Add New Product"></i>
+            </span>
+          </div>
+        </div>
+        <hr class="cart-cart" [style.display]="cart_display">
+        <div [style.float]="orderCompleted? 'left':'right'" *ngIf="facadeService.storeState == 'order'">
+          <h4 [hidden]="orderCompleted" class="h4ForToggleStore" matTooltip="Go Back" (click)="facadeService.toggleStoreState()">Back To Shop
+            <i class="fas fa-cart-plus"></i>
+          </h4>
+          <div *ngIf="orderCompleted">
+            <p>
+              <strong>Order Id:</strong> {{ orderId }}</p>
+            <p>
+              <strong>Date:</strong> {{ getToday() | date:'medium'}}</p>
+          </div>
+        </div>
+        <i class="fas {{cartCollapsed? 'fa-arrow-right': 'fa-arrow-left'}} cart-collapser" (click)="controlCartState()" *ngIf="facadeService.user?.role == 'guest' && facadeService.storeState == 'shopping'"
+          matTooltip="{{cartCollapsed? 'Show': 'Hide'}} Cart"></i>
+
+        <app-cart #clientCart *ngIf="variables.role == 'guest'" class="cart-cart client-cart" [style.display]="cart_display" (cleanCartEmitter)="openRemoveCartModal($event)"></app-cart>
+
+        <div *ngIf="orderCompleted">
+          <br>
+          <h5>Hope To See You Again!</h5>
+        </div>
+
+        <app-product-form *ngIf="variables.role == 'admin' && !cartCollapsed" #productForm (successfulChangeEmitter)="afterSuccessfulProductChange($event)"></app-product-form>
+        <!--Cart-->
+      </div>
+
+      <div *ngIf="facadeService.storeState == 'shopping'" class="box app-products screen-col-app-products screen-col custom-cart-size {{productsContSize}}">
+        <app-products #productsCont (productsEmitter)="handleProductAfterClick($event)" [cartCollapsed]="cartCollapsed"></app-products>
+        <!--Products-->
+      </div>
+
+      <div *ngIf="facadeService.storeState == 'order'" class="box screen-col-app-products screen-col custom-cart-size {{productsContSize}} app-order-form">
+        <div class="row" style="width: 100%;margin:unset;">
+          <app-order-form class="col-12" style="padding: 0px 5px;" (completeOrder)="preCompleteOrder($event)">
+          </app-order-form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<store-dialog #dialog></store-dialog>
