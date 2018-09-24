@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5b887b7cf41a1b35682ec0a5"},"cartProducts":[{"$oid":"5b9184c2e6a8683620343a7f"},{"$oid":"5b9184c2e6a8683620343a80"},{"$oid":"5b9184c2e6a8683620343a81"},{"$oid":"5b9184c2e6a8683620343a82"},{"$oid":"5b9184c2e6a8683620343a83"}],"updatedAt":{"$date":{"$numberLong":"1536263362188"}},"user":"313357402","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5b8dcdcbf4a5880dd06ac144"},"cartProducts":[],"updatedAt":{"$date":{"$numberLong":"1536087115102"}},"user":"465464575","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5b8ed48ec1c37c385c880d21"},"cartProducts":[],"updatedAt":{"$date":{"$numberLong":"1536087198276"}},"user":"111111110","__v":{"$numberInt":"0"}}

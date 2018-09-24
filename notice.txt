@@ -1,0 +1,6 @@
+in pursuance of  - angular app build --prod
+located in the build folder( public ) of server application,
+running is recommended through our nodejs express folder. 
+looking at angular code itself is fine and recommended :).
+Runing the app through kaparaOnline-server folder
+and not throgh kaparaOnline-client is best.
